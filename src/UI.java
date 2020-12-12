@@ -2,7 +2,6 @@ import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import xadrez.Cores;
@@ -58,7 +57,16 @@ public class UI {
 		printPecasCapturadas(capturadas);
 		System.out.println();
 		System.out.println("Turno : " + partidaDeXadrez.getTurno());
-		System.out.println("Esperando jogador: " + partidaDeXadrez.getJogadorAtual());
+		if (!partidaDeXadrez.getCheckMate()) {
+			System.out.println("Esperando jogador: " + partidaDeXadrez.getJogadorAtual());
+			if (partidaDeXadrez.getCheck()) {
+				System.out.println("CHECK!");
+			}
+		}
+		else {
+			System.out.println("CHECKMATE!!");
+			System.out.println("Vencedor: " + partidaDeXadrez.getJogadorAtual());
+		}
 	}
 	
 	public static void printTabuleiro(PecaXadrez[][] pecas) {
